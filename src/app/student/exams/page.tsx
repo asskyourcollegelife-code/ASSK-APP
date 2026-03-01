@@ -91,9 +91,9 @@ export default async function ExamsPage() {
                 </div>
 
                 <div className="flex gap-4 relative z-10">
-                    <button className="bg-white hover:bg-gray-50 text-gray-700 px-6 py-2.5 rounded-xl font-bold border border-gray-200 transition-colors shadow-sm flex items-center gap-2">
+                    <button disabled title="Results feature coming soon!" className="bg-white text-gray-400 px-6 py-2.5 rounded-xl font-bold border border-gray-200 flex items-center gap-2 cursor-not-allowed opacity-75">
                         <FileText size={18} strokeWidth={2.5} />
-                        Past Results
+                        Past Results (Soon)
                     </button>
                 </div>
             </div>

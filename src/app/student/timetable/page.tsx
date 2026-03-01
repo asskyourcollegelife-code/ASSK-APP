@@ -111,12 +111,12 @@ export default async function TimetablePage() {
                                         dayEntries.map((cls) => (
                                             <div
                                                 key={cls.id}
-                                                className={`p-4 rounded-2xl border bg-blue-50 border-blue-100 hover:shadow-md transition-shadow relative group cursor-pointer`}
+                                                className={`p-4 rounded-2xl border bg-blue-50 border-blue-100 relative`}
                                             >
                                                 {/* Color Indicator */}
                                                 <div className={`absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl bg-blue-500`}></div>
 
-                                                <h3 className="font-bold text-sm text-gray-900 leading-snug mb-1 pl-2 group-hover:text-primary-600 transition-colors">
+                                                <h3 className="font-bold text-sm text-gray-900 leading-snug mb-1 pl-2">
                                                     {cls.course_name}
                                                 </h3>
                                                 <p className="text-[10px] font-bold text-gray-400 pl-2 mb-2 uppercase">{cls.course_code}</p>

@@ -6,6 +6,7 @@ type EventEntry = {
     id: string;
     title: string;
     description: string;
+    event_type: 'inner' | 'inter' | 'outer';
     event_date: string;
     start_time: string;
     end_time: string;
@@ -57,6 +58,25 @@ export default async function EventsBoardPage() {
         const ampm = h >= 12 ? 'PM' : 'AM'
         const h12 = h % 12 || 12
         return `${h12}:${minutes} ${ampm}`
+    }
+
+    // Badge styling helper
+    const getEventTypeStyles = (type: string) => {
+        switch (type) {
+            case 'inter': return 'bg-blue-50 text-blue-600 border-blue-100'
+            case 'outer': return 'bg-orange-50 text-orange-600 border-orange-100'
+            case 'inner':
+            default: return 'bg-green-50 text-green-600 border-green-100'
+        }
+    }
+
+    const getEventTypeName = (type: string) => {
+        switch (type) {
+            case 'inter': return 'Intercollege'
+            case 'outer': return 'Outer College'
+            case 'inner':
+            default: return 'Inner College'
+        }
     }
 
     return (
@@ -133,6 +153,9 @@ export default async function EventsBoardPage() {
                                         <div className="px-2.5 py-1 rounded-lg text-xs font-bold uppercase tracking-wider bg-purple-50 text-purple-600 border border-purple-100 flex items-center gap-1.5">
                                             {/* @ts-ignore - The join returns either an array or object depending on relation, Supabase typed as any usually */}
                                             {event.club?.[0]?.name || event.club?.name || 'College Event'}
+                                        </div>
+                                        <div className={`px-2.5 py-1 rounded-lg text-xs font-bold uppercase tracking-wider border flex items-center gap-1.5 ${getEventTypeStyles(event.event_type)}`}>
+                                            {getEventTypeName(event.event_type)}
                                         </div>
                                     </div>
 

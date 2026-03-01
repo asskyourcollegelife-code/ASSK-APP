@@ -39,8 +39,8 @@ export async function createEvent(payload: any) {
 
     // Index for AI (fire-and-forget)
     indexDocument(
-        `Event: "${payload.title}". ${payload.description || ''}. Date: ${payload.event_date}. Time: ${payload.start_time || 'TBA'} to ${payload.end_time || 'TBA'}. Venue: ${payload.venue || 'TBA'}.${payload.registration_link ? ` Registration: ${payload.registration_link}` : ''}`,
-        { type: 'event', title: payload.title, event_date: payload.event_date, venue: payload.venue, url: '/student/events' }
+        `Event: "${payload.title}". Type: ${payload.event_type || 'inner'}. Category: ${payload.category || 'other'}. ${payload.description || ''}. Date: ${payload.event_date}. Time: ${payload.start_time || 'TBA'} to ${payload.end_time || 'TBA'}. Venue: ${payload.venue || 'TBA'}.${payload.registration_link ? ` Registration: ${payload.registration_link}` : ''}`,
+        { type: 'event', event_type: payload.event_type || 'inner', title: payload.title, event_date: payload.event_date, venue: payload.venue, url: '/student/events' }
     ).catch(err => console.error('AI indexing failed for event:', err));
 
     revalidatePath('/admin/events')

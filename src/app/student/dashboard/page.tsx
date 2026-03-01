@@ -31,7 +31,7 @@ export default async function DashboardPage() {
         .from('notes')
         .select('id, title, created_at, note_type')
         .order('created_at', { ascending: false })
-        .limit(3)
+        .limit(4)
 
     // Fetch upcoming events
     const { data: upcomingEvents } = await supabase
@@ -182,39 +182,6 @@ export default async function DashboardPage() {
                         )}
                     </div>
                 </div>
-
-                {/* Column 3: AI Assistant Widget */}
-                <div className="bg-white rounded-3xl p-5 lg:p-6 shadow-sm border border-gray-100 flex flex-col h-auto lg:h-[400px] relative overflow-hidden">
-                    <div className="absolute top-4 right-4 text-primary-50 opacity-50 pointer-events-none">
-                        {/* Visual background bot silhouette */}
-                        <Bot size={120} />
-                    </div>
-
-                    <div className="relative z-10 flex items-center gap-2 mb-4">
-                        <div className="bg-primary-100 p-1.5 rounded-lg text-primary-600">
-                            <Bot size={18} strokeWidth={2.5} />
-                        </div>
-                        <h2 className="font-bold text-lg text-gray-900">AI Assistant</h2>
-                    </div>
-                    <p className="relative z-10 text-sm font-medium text-gray-500 mb-auto">Get quick help with your studies.</p>
-
-                    <div className="relative z-10 mt-6">
-                        <div className="bg-gray-50 border border-gray-100 rounded-2xl p-4 mb-4 rounded-br-sm inline-block">
-                            <p className="text-sm text-gray-700 leading-relaxed font-medium">Hi Alex! Need help summarizing your last lecture or finding a definition?</p>
-                        </div>
-
-                        <div className="relative">
-                            <input
-                                type="text"
-                                placeholder="Ask me anything..."
-                                className="w-full bg-gray-50 border border-gray-200 rounded-full pl-4 pr-12 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:bg-white transition-all font-medium"
-                            />
-                            <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-primary-600 text-white p-2 rounded-full hover:bg-primary-700 transition-colors shadow-sm">
-                                <ArrowRight size={16} strokeWidth={3} />
-                            </button>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             {/* Bottom Grid */}
@@ -227,9 +194,7 @@ export default async function DashboardPage() {
                             <FileText className="text-primary-600" size={20} strokeWidth={2.5} />
                             <h2 className="font-bold text-lg text-gray-900">Quick Notes</h2>
                         </div>
-                        <button className="text-gray-400 hover:text-gray-600 bg-gray-50 hover:bg-gray-100 p-1.5 rounded-full transition-colors">
-                            <Plus size={20} strokeWidth={2.5} />
-                        </button>
+                        <a href="/student/notes" className="text-sm font-bold text-primary-600 hover:text-primary-700">See All</a>
                     </div>
 
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -252,13 +217,6 @@ export default async function DashboardPage() {
                                 </a>
                             )
                         })}
-
-                        <div className="border-2 border-dashed border-gray-200 hover:border-primary-300 hover:bg-primary-50/50 rounded-2xl p-4 transition-all cursor-pointer flex flex-col items-center justify-center text-center text-gray-500 hover:text-primary-600 group min-h-[120px]">
-                            <div className="bg-white group-hover:bg-primary-100 p-2 rounded-full mb-2 shadow-sm border border-gray-100 group-hover:border-primary-200 transition-colors">
-                                <Plus size={20} strokeWidth={2.5} />
-                            </div>
-                            <h4 className="font-bold text-xs">New Note</h4>
-                        </div>
                     </div>
                 </div>
 
@@ -322,11 +280,19 @@ export default async function DashboardPage() {
                                             <span className="block text-primary-600 text-xs tracking-widest uppercase mb-0.5">{eventDate.toLocaleDateString('en-US', { month: 'short' })}</span>
                                             <span className="text-gray-900 text-lg leading-none">{eventDate.getDate()}</span>
                                         </div>
-                                        <div className="pt-1 overflow-hidden">
+                                        <div className="pt-1 overflow-hidden w-full">
                                             <h3 className="font-bold text-gray-900 leading-snug group-hover:text-primary-600 transition-colors truncate">{event.title || 'Untitled Event'}</h3>
-                                            <div className="flex items-center gap-1.5 text-xs text-gray-500 mt-1.5 font-medium">
-                                                <Clock size={12} className="text-gray-400" />
-                                                {formatTime(event?.start_time || '')}
+                                            <div className="flex items-center justify-between mt-1.5">
+                                                <div className="flex items-center gap-1.5 text-xs text-gray-500 font-medium">
+                                                    <Clock size={12} className="text-gray-400" />
+                                                    {formatTime(event?.start_time || '')}
+                                                </div>
+                                                <div className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded border ${event.event_type === 'inter' ? 'bg-blue-50 text-blue-600 border-blue-100' :
+                                                    event.event_type === 'outer' ? 'bg-orange-50 text-orange-600 border-orange-100' :
+                                                        'bg-green-50 text-green-600 border-green-100'
+                                                    }`}>
+                                                    {event.event_type === 'inter' ? 'Intercollege' : event.event_type === 'outer' ? 'Outer College' : 'Inner College'}
+                                                </div>
                                             </div>
                                         </div>
                                     </a>
@@ -341,3 +307,4 @@ export default async function DashboardPage() {
         </div>
     )
 }
+

@@ -17,6 +17,7 @@ export default function NewEventPage() {
         title: '',
         description: '',
         category: 'technical',
+        event_type: 'inner',
         event_date: '',
         start_time: '',
         venue: '',
@@ -41,6 +42,7 @@ export default function NewEventPage() {
                 title: formData.title,
                 description: formData.description,
                 category: formData.category,
+                event_type: formData.event_type,
                 event_date: formData.event_date,
                 start_time: formData.start_time || null,
                 venue: formData.venue,
@@ -122,20 +124,36 @@ export default function NewEventPage() {
                             />
                         </div>
 
-                        <div className="space-y-2">
-                            <label className="text-sm font-bold text-gray-700 uppercase tracking-wide">Category</label>
-                            <select
-                                name="category"
-                                value={formData.category}
-                                onChange={handleChange}
-                                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl font-medium text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-colors appearance-none"
-                            >
-                                <option value="technical">Technical</option>
-                                <option value="cultural">Cultural</option>
-                                <option value="sports">Sports</option>
-                                <option value="workshop">Workshop</option>
-                                <option value="other">Other</option>
-                            </select>
+                        <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                                <label className="text-sm font-bold text-gray-700 uppercase tracking-wide">Category</label>
+                                <select
+                                    name="category"
+                                    value={formData.category}
+                                    onChange={handleChange}
+                                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl font-medium text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-colors appearance-none"
+                                >
+                                    <option value="technical">Technical</option>
+                                    <option value="cultural">Cultural</option>
+                                    <option value="sports">Sports</option>
+                                    <option value="workshop">Workshop</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div className="space-y-2">
+                                <label className="text-sm font-bold text-gray-700 uppercase tracking-wide">Event Scope</label>
+                                <select
+                                    name="event_type"
+                                    value={formData.event_type}
+                                    onChange={handleChange}
+                                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl font-medium text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-colors appearance-none"
+                                >
+                                    <option value="inner">Inner College</option>
+                                    <option value="inter">Intercollege</option>
+                                    <option value="outer">Outer College</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div className="space-y-2">
