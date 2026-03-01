@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import {
     LayoutDashboard,
@@ -43,14 +44,15 @@ export default function Sidebar({ open = false, onClose }: { open?: boolean; onC
 
                 {/* Brand */}
                 <div className="flex items-center justify-between px-2 mb-8">
-                    <div className="flex items-center gap-3">
-                        <div className="bg-primary-50 p-2 rounded-xl text-primary-600">
-                            <GraduationCap size={24} strokeWidth={2.5} />
-                        </div>
-                        <div>
-                            <h1 className="font-bold text-xl text-gray-900 leading-none tracking-tight">ASSK</h1>
-                            <p className="text-xs text-gray-500 font-medium">Student Portal</p>
-                        </div>
+                    <div className="flex items-center">
+                        <Image
+                            src="/sidebarlogo.png"
+                            alt="ASSK - Your College Life Portal"
+                            width={160}
+                            height={60}
+                            className="object-contain"
+                            priority
+                        />
                     </div>
                     <button onClick={onClose} className="p-2 lg:hidden text-gray-500 hover:bg-gray-100 rounded-lg">
                         <X size={20} />
