@@ -1,4 +1,4 @@
-import { ArrowRight, Clock, MapPin, Bot, Plus, Calendar as CalendarIcon, FileText, Megaphone, Briefcase } from 'lucide-react'
+import { ArrowRight, Clock, MapPin, Bot, Calendar as CalendarIcon, FileText, Megaphone, Briefcase } from 'lucide-react'
 import { createClient as createSupabaseClient } from '@supabase/supabase-js'
 
 export default async function DashboardPage() {
