@@ -1,6 +1,7 @@
 import { signup } from '../actions'
 
-export default function SignupPage({ searchParams }: { searchParams: { error?: string } }) {
+export default async function SignupPage({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
+    const params = await searchParams;
     return (
         <div className="flex min-h-screen items-center justify-center bg-primary-50 px-4">
             <div className="w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden">
@@ -12,9 +13,9 @@ export default function SignupPage({ searchParams }: { searchParams: { error?: s
                 <div className="p-8">
                     <h2 className="text-2xl font-bold text-gray-900 mb-6">Create an account</h2>
 
-                    {searchParams?.error && (
+                    {params?.error && (
                         <div className="bg-red-50 text-red-600 p-3 rounded-lg text-sm mb-6 border border-red-100">
-                            {searchParams.error}
+                            {params.error}
                         </div>
                     )}
 
