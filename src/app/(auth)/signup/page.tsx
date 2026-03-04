@@ -9,7 +9,7 @@ export default async function SignupPage({ searchParams }: { searchParams: Promi
                     <img
                         src="/sidebarlogo.png"
                         alt="ASSK Logo"
-                        className="h-12 w-auto mx-auto mb-4 brightness-0 invert"
+                        className="h-20 w-auto mx-auto mb-4"
                     />
                     <h1 className="text-3xl font-bold mb-2">Join ASSK</h1>
                     <p className="text-primary-100">Get started with your student portal.</p>
