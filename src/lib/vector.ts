@@ -11,6 +11,9 @@ const supabaseAdmin = createClient(
  * Generates an embedding for the given text using OpenAI API directly.
  */
 export async function generateEmbedding(text: string): Promise<number[]> {
+    if (text.length > 8000) {
+        throw new Error('Input text exceeds maximum allowed length for embeddings.');
+    }
     const res = await fetch('https://api.openai.com/v1/embeddings', {
         method: 'POST',
         headers: {

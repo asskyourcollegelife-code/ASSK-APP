@@ -46,6 +46,14 @@ async function indexItem(content: string, metadata: Record<string, any>) {
 
 export async function POST(req: Request) {
     try {
+        const authHeader = req.headers.get('authorization');
+        if (authHeader !== `Bearer ${process.env.INDEX_API_SECRET}`) {
+            return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+                status: 401,
+                headers: { 'Content-Type': 'application/json' },
+            });
+        }
+
         // Clear existing knowledge base to re-index fresh
         await supabaseAdmin.from('knowledge_base').delete().neq('id', '00000000-0000-0000-0000-000000000000');
 

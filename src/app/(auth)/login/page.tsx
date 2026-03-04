@@ -6,6 +6,11 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
         <div className="flex min-h-screen items-center justify-center bg-primary-50 px-4">
             <div className="w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden">
                 <div className="bg-primary-600 p-8 text-white text-center">
+                    <img
+                        src="/sidebarlogo.png"
+                        alt="ASSK Logo"
+                        className="h-12 w-auto mx-auto mb-4 brightness-0 invert"
+                    />
                     <h1 className="text-3xl font-bold mb-2">ASSK</h1>
                     <p className="text-primary-100">Your College Life, Organized.</p>
                 </div>

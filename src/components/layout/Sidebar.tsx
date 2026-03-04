@@ -68,6 +68,7 @@ export default function Sidebar({ open = false, onClose }: { open?: boolean; onC
                             <Link
                                 key={item.href}
                                 href={item.href}
+                                onClick={onClose}
                                 className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${isActive
                                     ? 'bg-primary-600 text-white shadow-md shadow-primary-500/20'
                                     : 'text-gray-600 hover:bg-primary-50 hover:text-primary-700'
@@ -84,6 +85,7 @@ export default function Sidebar({ open = false, onClose }: { open?: boolean; onC
                 <div className="mt-4 pt-4 border-t border-gray-100">
                     <Link
                         href="/student/settings"
+                        onClick={onClose}
                         className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all ${pathname === '/student/settings'
                             ? 'bg-primary-600 text-white shadow-md shadow-primary-500/20'
                             : 'text-gray-600 hover:bg-primary-50 hover:text-primary-700'
